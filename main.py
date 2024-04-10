@@ -99,10 +99,10 @@ class A10():
 
 
 if __name__ == '__main__':
-
+    print()
     # Intialize class instance for assignment10 methods and variables
     S10assignment = A10()
-    print("Hyperparamaters & Methods Initialzed... /n")
+    print("Hyperparamaters & Methods Initialzed... \n")
 
     
     ####### Set Seed ##########
@@ -116,6 +116,7 @@ if __name__ == '__main__':
 
 
     ##### Display Sample data ######
+    print("_________________Sample data_________________")
     post_display(S10assignment.train_loader,{v: k for k, v in S10assignment.labels.items()},S10assignment.meanlist, S10assignment.stdlist)
 
 
