@@ -58,8 +58,8 @@ class A10():
     def loadmymodel(self):
         # Load the model and move it to the configured device
         self.model = self.modelclass(dropout_value=self.dropoutnum).to(self.device)
-        print(summary(self.model, input_size=self.imageinputsize))
-        print("Model Initialized...\n")
+        print("Model Initialized. Below is the summary...\n")
+        summary(self.model, input_size=self.imageinputsize)
         
 
     def giveoptimizer(self):
