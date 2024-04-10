@@ -72,7 +72,7 @@ class A10():
     def LRfinder(self):
         # Use a Learning Rate Finder to determine the optimal maximum learning rate
         self.lr_finder = initiateLRfinder(self.train_loader, self.model, self.optimizer, self.loss, self.device)
-        self.suggested_lr = self.lr_finder.history["lr"][lr_finder.history["loss"].index(lr_finder.best_loss)]
+        self.suggested_lr = self.lr_finder.history["lr"][self.lr_finder.history["loss"].index(self.lr_finder.best_loss)]
         self.lr_finder.reset()  # Reset the model and optimizer to their initial state
 
     def scheduleOCP(self):
