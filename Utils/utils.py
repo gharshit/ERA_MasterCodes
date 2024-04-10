@@ -224,7 +224,7 @@ def epochLR(epoch, scheduler,lr_epoch):
 
 ###############################
 
-def showmisclassifiedsamples(misclassified_samples,label_map,plottitle):
+def showmisclassifiedsamples(misclassified_samples,label_map,plottitle,mean_list, std_list):
 
   '''
 
@@ -244,7 +244,7 @@ def showmisclassifiedsamples(misclassified_samples,label_map,plottitle):
       # Display the image (convert from tensor to numpy array) in RGB
 
       img_tensor = one_sample[0].clone().detach()
-      img = get_image_from_tensor(img_tensor)
+      img = get_image_from_tensor(img_tensor,mean_list,std_list)
 
       # Convert the PIL Image to a numpy array and display it
       image = np.array(img)
