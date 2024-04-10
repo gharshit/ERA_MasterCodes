@@ -39,9 +39,12 @@ class A10():
         # Load train data
         self.labels, self.train_loader = self.loader('train', self.loaderconfig())
 
+        print("Dataset loaded...")
+
     def loadmymodel(self):
         # Load the model and move it to the configured device
         self.model = self.modelclass(dropout_value=self.dropoutnum).to(self.device)
+        print("Model Initialized...")
 
     def giveoptimizer(self):
         # Set up the optimizer with specified algorithm, learning rate, and weight decay
