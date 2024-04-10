@@ -42,6 +42,7 @@ class A10():
         self.label_, self.train_loader      = self.loader('train', self.loaderconfig())
 
 
+        
     def loadmymodel(self):
         self.model =  self.modelclass(dropout_value = self.dropoutnum).to(self.device)
 
