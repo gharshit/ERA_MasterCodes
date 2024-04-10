@@ -64,16 +64,12 @@ class A10():
     def giveoptimizer(self):
         # Set up the optimizer with specified algorithm, learning rate, and weight decay
         self.optimizer = get_optimizer(self.model, self.optimizeralgo, self.lr, self.weightdecay)
+        print()
 
     def giveloss(self):
         # Define the loss function based on the specified criteria
         self.loss = get_loss(self.losscriteria)
-
-    def LRfinder(self):
-        # Use a Learning Rate Finder to determine the optimal maximum learning rate
-        self.lr_finder = initiateLRfinder(self.train_loader, self.model, self.optimizer, self.loss, self.device)
-        self.lr_finder.plot()
-        self.lr_finder.reset()  # Reset the model and optimizer to their initial state
+        print()
 
     def scheduleOCP(self,maxlr):
         self.suggested_lr = maxlr
