@@ -4,6 +4,8 @@ from Train import *
 from Utils import *
 from torchsummary import summary
 import warnings
+
+#Ignore warning for now
 warnings.filterwarnings('ignore')
 
 class A10():
