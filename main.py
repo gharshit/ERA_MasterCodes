@@ -33,6 +33,16 @@ class A10():
         self.trainacc = []
         self.testacc = []
         self.epochlr = []
+
+    def loaderconfig(self):
+        # Create a dictionary of DataLoader configuration options
+        kwargs = {
+            'batch_size': self.batchsize,   # Set the batch size
+            'shuffle': True,                # Shuffle data to ensure diverse batches
+            'num_workers': self.numworkers, # Number of worker threads for data loading
+            'pin_memory': True              # Enable pinning memory for faster GPU transfers
+        }
+        return kwargs
         
     def loadmydata(self):
         # Load dataset and its loader
@@ -74,15 +84,6 @@ class A10():
         }
         self.scheduler = get_scheduler(self.optimizer, onecycle=self.onecyclestatus, **self.ocp_parameters)
 
-    def loaderconfig(self):
-        # Create a dictionary of DataLoader configuration options
-        kwargs = {
-            'batch_size': self.batchsize,   # Set the batch size
-            'shuffle': True,                # Shuffle data to ensure diverse batches
-            'num_workers': self.numworkers, # Number of worker threads for data loading
-            'pin_memory': True              # Enable pinning memory for faster GPU transfers
-        }
-        return kwargs
 
     def runmymodel(self):
         for epoch in range(1, self.num_epochs + 1):
@@ -101,13 +102,22 @@ if __name__ == '__main__':
 
     # Intialize class instance for assignment10 methods and variables
     S10assignment = A10()
-    print("Hyperparamaters & Methods Initialzed...")
+    print("Hyperparamaters & Methods Initialzed... /n")
 
     
     ####### Set Seed ##########
     torch.manual_seed(S10assignment.SEED)
     if S10assignment.device == 'cuda':
         torch.cuda.manual_seed(S10assignment.SEED)
+
+    ###### Load Dataset #######
+    S10assignment.loadmydata()
+    print()
+
+
+    ##### Display Sample data ######
+    post_display(S10assignment.train_loader,{v: k for k, v in S10assignment.labels.items()},S10assignment.meanlist, S10assignment.stdlist)
+
 
 
 
