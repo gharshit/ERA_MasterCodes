@@ -24,6 +24,8 @@ class A10():
         self.pctabs = 5                  # Percentage of total steps where the learning rate increases in One Cycle Policy
         self.divfactor = 10              # Initial division factor for the learning rate in One Cycle Policy
         self.finaldivfactor = 1          # Final division factor for learning rate in One Cycle Policy
+        self.meanlist = mean_list        # mean of dataset
+        self.stdlist = std_list          # std of dataset
         
         # Variables to store data for plotting accuracy and loss graphs
         self.trainlosses = []
@@ -94,7 +96,7 @@ class A10():
             self.missclassifiedimages = self.testfunc(self.model, self.device, self.test_loader, self.loss, self.testlosses, self.testacc)
 
     def plotsampledata(self):
-        post_display(self.train_loader,self.labels,mean_list, std_list)
+        post_display(self.train_loader,self.labels,self.meanlist, self.stdlist)
 
     
 
