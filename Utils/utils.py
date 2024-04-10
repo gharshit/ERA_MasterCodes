@@ -262,3 +262,18 @@ def showmisclassifiedsamples(misclassified_samples,label_map,plottitle,mean_list
 
   # Show the entire figure with subplots
   plt.show()
+
+
+
+################## list folder structure #################
+
+def list_files(startpath):
+    for root, dirs, files in os.walk(startpath):
+        level = root.replace(startpath, '').count(os.sep)
+        indent = ' ' * 4 * (level)
+        if '.git' in root or 'pycache' in root.lower():
+            continue
+        print('{}{}/'.format(indent, os.path.basename(root)))
+        subindent = ' ' * 4 * (level + 1)
+        for f in files:
+          print('{}{}'.format(subindent, f))

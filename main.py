@@ -7,6 +7,7 @@ import warnings
 
 #Ignore warning for now
 warnings.filterwarnings('ignore')
+import multiprocessing as mp
 
 class A10():
     def __init__(self):
@@ -221,6 +222,7 @@ class A11():
 
 
 if __name__ == '__main__':
+    # mp.set_start_method('spawn', force=True)
     print()
     # Intialize class instance for assignment10 methods and variables
     S11assignment = A11()
