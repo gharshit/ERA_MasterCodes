@@ -30,19 +30,19 @@ class A10():
         self.trainacc = []
         self.testacc = []
         self.epochlr = []
-
-
+        
+        
     def loadmydata(self):
         ## Get dataset and its loader
 
         # load test data
-         _ ,self.test_loader                = self.loader('test', self.loaderconfig())
+        _ ,self.test_loader = self.loader('test', self.loaderconfig())
 
         # load train data
-        self.label_, self.train_loader      = self.loader('train', self.loaderconfig())
+        self.labels, self.train_loader      = self.loader('train', self.loaderconfig())
 
 
-        
+
     def loadmymodel(self):
         self.model =  self.modelclass(dropout_value = self.dropoutnum).to(self.device)
 
