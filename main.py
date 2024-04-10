@@ -117,7 +117,7 @@ class A11():
         self.lr = 0.01                   # Learning rate for the optimizer
         self.weightdecay = 0.0001        # Weight decay (regularization term) for the optimizer
         self.losscriteria = "crossentropy"  # Loss function criteria
-        self.num_epochs = 24             # Number of training epochs
+        self.num_epochs = 20             # Number of training epochs
         self.optimizeralgo = "ADAM"      # Optimizer algorithm
         self.dropoutnum = 0.07           # Dropout rate for the model (to prevent overfitting)
         self.numworkers = 4              # Number of workers for data loading
@@ -207,6 +207,9 @@ class A11():
 
     def modelplots(self):
         post_accuracyplots(self.trainlosses,self.testlosses,self.trainacc,self.testacc)
+
+    def missclassplots(self):
+        showmisclassifiedsamples(self.missclassifiedimages,{v: k for k, v in self.labels.items()},"Session 11",self.meanlist,self.stdlist)
 
 
 
