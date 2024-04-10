@@ -27,6 +27,7 @@ class A10():
         self.finaldivfactor = 1          # Final division factor for learning rate in One Cycle Policy
         self.meanlist = mean_list        # mean of dataset
         self.stdlist = std_list          # std of dataset
+        self.imageinputsize = (3,32,32)  # set image input size
         
         # Variables to store data for plotting accuracy and loss graphs
         self.trainlosses = []
@@ -57,7 +58,9 @@ class A10():
     def loadmymodel(self):
         # Load the model and move it to the configured device
         self.model = self.modelclass(dropout_value=self.dropoutnum).to(self.device)
-        print("Model Initialized...")
+        print("Model Initialized. Below is the summary...\n")
+        print(summary(self.model, input_size=self.imageinputsize))
+        
 
     def giveoptimizer(self):
         # Set up the optimizer with specified algorithm, learning rate, and weight decay
