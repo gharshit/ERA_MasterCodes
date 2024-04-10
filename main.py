@@ -99,14 +99,14 @@ class A10():
 if __name__ == '__main__':
 
     # Intialize class instance for assignment10 methods and variables
-    a10_hyp = A10()
+    S10assignment = A10()
     print("Hyperparamaters & Methods Initialzed...")
 
     
     ####### Set Seed ##########
-    torch.manual_seed(a10_hyp.SEED)
-    if a10_hyp.device == 'cuda':
-        torch.cuda.manual_seed(a10_hyp.SEED)
+    torch.manual_seed(S10assignment.SEED)
+    if S10assignment.device == 'cuda':
+        torch.cuda.manual_seed(S10assignment.SEED)
 
 
 
