@@ -44,28 +44,57 @@ class getCIFAR10(torch.utils.data.Dataset):
 ######### Step1 Transformations Start ###########
 
 
+# #################### Training transformation for Session 10 Assignment ######################
+# def get_train_transforms():
 
+#   '''
+
+#   Train data transformations for session 10
+
+#   '''
+
+#   return A.Compose([
+
+#     # Add padding before cropping 
+#     A.PadIfNeeded(36,36),
+
+#     # Randomly crop back to original dimension of data
+#     A.RandomCrop(32, 32),
+
+#     # Apply horizontal flip
+#     A.HorizontalFlip(p=0.5),
+
+#     # Apply removal of box regions from the image to introduce regularization
+#     A.CoarseDropout(max_holes = 1, max_height=8, max_width=8, min_holes = 1, min_height=8, min_width=8, fill_value=[q*255 for q in mean_list], mask_fill_value = None,p=0.5),
+
+#     # Apply normalization; albumentations applies transfomation wrt to the max pixel whose default value is 255
+#     A.Normalize(mean=mean_list, std = std_list),
+
+#     #convert to tensor
+#     ToTensorV2(),
+#     ])
+
+
+
+# #################### Training transformation for Session 11 Assignment ######################
 def get_train_transforms():
 
   '''
 
-  Train data transformations
+  Train data transformations for session 11
 
   '''
 
   return A.Compose([
 
     # Add padding before cropping 
-    A.PadIfNeeded(36,36),
+    A.PadIfNeeded(40,40),
 
     # Randomly crop back to original dimension of data
     A.RandomCrop(32, 32),
 
-    # Apply horizontal flip
-    A.HorizontalFlip(p=0.5),
-
     # Apply removal of box regions from the image to introduce regularization
-    A.CoarseDropout(max_holes = 1, max_height=8, max_width=8, min_holes = 1, min_height=8, min_width=8, fill_value=[q*255 for q in mean_list], mask_fill_value = None,p=0.5),
+    A.CoarseDropout(max_holes = 1, max_height=16, max_width=16, min_holes = 1, min_height=16, min_width=16, fill_value=[q*255 for q in mean_list], mask_fill_value = None,p=0.5),
 
     # Apply normalization; albumentations applies transfomation wrt to the max pixel whose default value is 255
     A.Normalize(mean=mean_list, std = std_list),
@@ -73,6 +102,9 @@ def get_train_transforms():
     #convert to tensor
     ToTensorV2(),
     ])
+
+
+
 
 
 
@@ -115,7 +147,7 @@ def get_CIFARdataset_with_loader(datasettype,kwargs):
     '''
 
     if datasettype == 'train':
-        train_data = getCIFAR10(datasets.CIFAR10('../data', train=True, download=True), transform=get_train_transforms())  # download and load the "training" data of CIFAR and apply test_transform
+        train_data = getCIFAR10(datasets.CIFAR10('../data', train=True, download=True), transform=get_train_transforms_a10())  # download and load the "training" data of CIFAR and apply test_transform
         print("Training data loaded successfully. Shape of data: ",train_data.dataset.data.shape)
         return train_data.dataset.class_to_idx, torch.utils.data.DataLoader(train_data, **kwargs)    # load train data
     elif datasettype == 'test':
