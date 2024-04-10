@@ -18,7 +18,6 @@ class A10():
         self.onecyclestatus = True       # Whether to use One Cycle Policy for learning rate scheduling
         self.SEED = 4                    # Seed for random number generators for reproducibility
         self.modelclass = Model_CustomResNet  # Model class to be used
-        self.loader = get_CIFARdataset_with_loader  # Function to get the CIFAR dataset with data loader
         self.trainfunc = train_ocp       # Training function
         self.testfunc = test             # Testing function
         self.device = setdevice()        # Set device to GPU if available, else CPU
@@ -49,9 +48,9 @@ class A10():
     def loadmydata(self):
         # Load dataset and its loader
         # Load test data
-        _, self.test_loader = self.loader('test', self.loaderconfig())
+        _, self.test_loader = get_CIFARdataset_with_loader('test', self.loaderconfig())
         # Load train data
-        self.labels, self.train_loader = self.loader('train', self.loaderconfig())
+        self.labels, self.train_loader = get_CIFARdataset_with_loader('train', self.loaderconfig())
 
         print("Dataset loaded...")
 
