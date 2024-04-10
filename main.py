@@ -79,7 +79,7 @@ class A10():
         self.lr_finder.reset()  # Reset the model and optimizer to their initial state
 
     def scheduleOCP(self,maxlr):
-        self.suggested_lr = maxlr
+        self.suggested_lr = maxlr    # this is taken from LRfinder suggested LR
         # Configure the One Cycle Policy parameters and scheduler
         self.ocp_parameters = {
             'max_lr': self.suggested_lr,

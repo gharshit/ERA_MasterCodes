@@ -4,7 +4,7 @@ import torch.nn.functional as F
 
 
 
-######################################################## Model for Assignment 9 ########################################################
+######################################################## Model for Assignment 10 ########################################################
 
 #Define the model
 class Model_CustomResNet(nn.Module):
@@ -25,7 +25,7 @@ class Model_CustomResNet(nn.Module):
             self.xnorm(64),
             nn.ReLU(),
             nn.Dropout(dropout_value)
-        )  # n_in = 32, n_out = 30, r_in = 1, r_out = 3, j_in = 1, s=1, j_out = 1
+        )  #
 
         ##################### PREP LAYER ENDS ################
 
@@ -39,7 +39,7 @@ class Model_CustomResNet(nn.Module):
             self.xnorm(128),
             nn.ReLU(),
             nn.Dropout(dropout_value)
-        )  # n_in = 32, n_out = 30, r_in = 1, r_out = 3, j_in = 1, s=1, j_out = 1
+        )  #
 
         ###### RESNET BLOCK
         self.layer1_resblock = nn.Sequential(
@@ -52,7 +52,7 @@ class Model_CustomResNet(nn.Module):
             self.xnorm(128),
             nn.ReLU(),
             nn.Dropout(dropout_value)
-        ) # n_in = 30, n_out = 30, r_in = 3, r_out = 5, j_in = 1, s=1, j_out = 1
+        ) #
 
 
         ################ LAYER 1 ENDS #################
@@ -68,7 +68,7 @@ class Model_CustomResNet(nn.Module):
             self.xnorm(256),
             nn.ReLU(),
             nn.Dropout(dropout_value)
-        )  # n_in = 32, n_out = 30, r_in = 1, r_out = 3, j_in = 1, s=1, j_out = 1
+        )  # 
 
         ################ LAYER 2 ENDS #################
 
@@ -84,7 +84,7 @@ class Model_CustomResNet(nn.Module):
             self.xnorm(512),
             nn.ReLU(),
             nn.Dropout(dropout_value)
-        )  # n_in = 32, n_out = 30, r_in = 1, r_out = 3, j_in = 1, s=1, j_out = 1
+        )
 
         ###### RESNET BLOCK
         self.layer3_resblock = nn.Sequential(
@@ -97,7 +97,7 @@ class Model_CustomResNet(nn.Module):
             self.xnorm(512),
             nn.ReLU(),
             nn.Dropout(dropout_value)
-        ) # n_in = 30, n_out = 30, r_in = 3, r_out = 5, j_in = 1, s=1, j_out = 1
+        )
 
 
         ################ LAYER 3 ENDS #################
