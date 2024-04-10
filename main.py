@@ -117,8 +117,8 @@ if __name__ == '__main__':
 
 
     ##### Display Sample data ######
-    print("_________________Sample data_________________")
-    post_display(S10assignment.train_loader,{v: k for k, v in S10assignment.labels.items()},S10assignment.meanlist, S10assignment.stdlist)
+    # print("_________________Sample data_________________")
+    # post_display(S10assignment.train_loader,{v: k for k, v in S10assignment.labels.items()},S10assignment.meanlist, S10assignment.stdlist)
 
 
 
