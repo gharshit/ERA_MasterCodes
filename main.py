@@ -93,6 +93,9 @@ class A10():
             # Evaluate the model on the test data loader
             self.missclassifiedimages = self.testfunc(self.model, self.device, self.test_loader, self.loss, self.testlosses, self.testacc)
 
+    def plotsampledata(self):
+        post_display(self.train_loader,self.labels,mean_list, std_list)
+
     
 
 
