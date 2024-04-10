@@ -33,9 +33,13 @@ class A10():
 
 
     def loadmydata(self):
-        ## Get CIFAR dataset and pass it to loader
-         _ ,self.test_loader                = self.loader('test',self.loaderconfig())   # load test data
-        self.label_, self.train_loader      = self.loader('train',self.loaderconfig())  # load train data
+        ## Get dataset and its loader
+
+        # load test data
+         _ ,self.test_loader                = self.loader('test', self.loaderconfig())
+
+        # load train data
+        self.label_, self.train_loader      = self.loader('train', self.loaderconfig())
 
 
     def loadmymodel(self):
