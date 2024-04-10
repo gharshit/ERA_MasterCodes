@@ -2,6 +2,7 @@ from DataLoader import *
 from Models import *
 from Train import *
 from Utils import *
+from torchsummary import summary
 
 class A10():
     def __init__(self):
