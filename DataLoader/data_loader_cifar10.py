@@ -147,7 +147,7 @@ def get_CIFARdataset_with_loader(datasettype,kwargs):
     '''
 
     if datasettype == 'train':
-        train_data = getCIFAR10(datasets.CIFAR10('../data', train=True, download=True), transform=get_train_transforms_a10())  # download and load the "training" data of CIFAR and apply test_transform
+        train_data = getCIFAR10(datasets.CIFAR10('../data', train=True, download=True), transform=get_train_transforms())  # download and load the "training" data of CIFAR and apply test_transform
         print("Training data loaded successfully. Shape of data: ",train_data.dataset.data.shape)
         return train_data.dataset.class_to_idx, torch.utils.data.DataLoader(train_data, **kwargs)    # load train data
     elif datasettype == 'test':
