@@ -71,9 +71,9 @@ class A10():
 
     def LRfinder(self):
         # Use a Learning Rate Finder to determine the optimal maximum learning rate
-        lr_finder = initiateLRfinder(self.train_loader, self.model, self.optimizer, self.loss, self.device)
+        self.lr_finder = initiateLRfinder(self.train_loader, self.model, self.optimizer, self.loss, self.device)
         self.suggested_lr = lr_finder.history["lr"][lr_finder.history["loss"].index(lr_finder.best_loss)]
-        lr_finder.reset()  # Reset the model and optimizer to their initial state
+        self.lr_finder.reset()  # Reset the model and optimizer to their initial state
 
     def scheduleOCP(self):
         # Configure the One Cycle Policy parameters and scheduler
@@ -116,16 +116,6 @@ if __name__ == '__main__':
     ###### Load Dataset #######
     S10assignment.loadmydata()
     print()
-
-
-    ##### Display Sample data ######
-    # print("_________________Sample data_________________")
-    # post_display(S10assignment.train_loader,{v: k for k, v in S10assignment.labels.items()},S10assignment.meanlist, S10assignment.stdlist)
-
-
-
-
-
 
 
 
