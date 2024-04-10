@@ -3,6 +3,8 @@ from Models import *
 from Train import *
 from Utils import *
 from torchsummary import summary
+import warnings
+warnings.filterwarnings('ignore')
 
 class A10():
     def __init__(self):
@@ -98,6 +100,9 @@ class A10():
 
             # Evaluate the model on the test data loader
             self.missclassifiedimages = self.testfunc(self.model, self.device, self.test_loader, self.loss, self.testlosses, self.testacc)
+
+    def modelplots(self):
+        post_accuracyplots(self.trainlosses,self.testlosses,self.trainacc,self.testacc)
         
 
 
