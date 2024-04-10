@@ -104,34 +104,34 @@ if __name__ == '__main__':
         torch.cuda.manual_seed(a10_hyp.SEED)
 
     
-    a10_hyp.loadmydata()
-    print("CIFAR10 dataset loaded...")
+    # a10_hyp.loadmydata()
+    # print("CIFAR10 dataset loaded...")
 
-    # label_map = {v: k for k, v in label_.items()}                             # get label map
-    # print("Target label map: ",label_map)
+    # # label_map = {v: k for k, v in label_.items()}                             # get label map
+    # # print("Target label map: ",label_map)
 
 
     
-    # Initialize the model and move it to the device ( GPU )
-    a10_hyp.loadmymodel()
-    print("Model Initialized...")
+    # # Initialize the model and move it to the device ( GPU )
+    # a10_hyp.loadmymodel()
+    # print("Model Initialized...")
 
 
-    # Set up the optimizer
-    a10_hyp.giveoptimizer()
+    # # Set up the optimizer
+    # a10_hyp.giveoptimizer()
 
-    # Get the loss function 
-    a10_hyp.giveloss()
+    # # Get the loss function 
+    # a10_hyp.giveloss()
 
-    # run LR finder
-    a10_hyp.LRfinder()
+    # # run LR finder
+    # a10_hyp.LRfinder()
 
-    # Initiate OCP
-    a10_hyp.scheduleOCP()
+    # # Initiate OCP
+    # a10_hyp.scheduleOCP()
 
 
-    #run the model
-    a10_hyp.runmymodel()
+    # #run the model
+    # a10_hyp.runmymodel()
 
 
 
