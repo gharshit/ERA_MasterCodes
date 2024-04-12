@@ -286,3 +286,81 @@ def list_files(startpath):
 
 
 ######################################## GRAD CAM CODE ####################################
+
+
+def showgramcam(model,misclassified_samples,label_map,plottitle,mean_list, std_list,device):
+
+  '''
+
+  Display gradcam on images
+
+  '''
+
+  #Get target layer to pass to gradcam
+  target_layers = [model.layer3[-1]]
+
+  # Create a new figure for plotting
+  fig, axes = plt.subplots(2, 10, figsize=(16, 7))
+
+  # Set the title for the entire figure
+  fig.suptitle(f"GRADCAM Images - {plottitle}", fontsize=16)
+
+  # Loop through 16 samples in the batch
+  for i in range(len(misclassified_samples)):
+      one_sample = misclassified_samples[i]
+      # Display the image (convert from tensor to numpy array) in RGB
+
+      img_tensor = one_sample[0].clone().detach()
+      input_tensor = img_tensor.unsqueeze(0).to(device)
+      pil_img = get_image_from_tensor(img_tensor,mean_list,std_list)
+
+      # Convert the PIL Image to a numpy array and display it
+      image = np.array(pil_img).astype(np.float32) / 255
+
+
+      ################ grad cam #####################
+
+      # Construct the CAM object once, and then re-use it on many images:
+      cam = GradCAM(model=model, target_layers=target_layers)
+
+
+      actual_target    = [ClassifierOutputTarget(one_sample[1].item())]
+      predicted_target = [ClassifierOutputTarget(one_sample[2].item())]
+
+      # You can also pass aug_smooth=True and eigen_smooth=True, to apply smoothing.
+      grayscale_cam_actual = cam(input_tensor=input_tensor, targets=actual_target)
+      grayscale_cam_pred   = cam(input_tensor=input_tensor, targets=predicted_target)
+
+      # In this example grayscale_cam has only one image in the batch
+      grayscale_cam_actual = grayscale_cam_actual[0, :]
+      grayscale_cam_pred   = grayscale_cam_pred[0, :]
+
+
+      visualization_actual = show_cam_on_image(image, grayscale_cam_actual, use_rgb=True)
+      visualization_pred   = show_cam_on_image(image, grayscale_cam_pred, use_rgb=True)
+
+
+      ###############################################
+
+      axes[i // 10, i % 10].imshow(visualization_actual)
+
+      # Set the title of the subplot to the corresponding label
+      axes[i // 10, i % 10].set_title(f"Actual: {label_map[one_sample[1].item()]}"+" , "+f"Predicted: {label_map[one_sample[2].item()]}" + "  " +"<GradCAM on Actual>", fontsize=6)
+
+      # Remove x and y ticks for cleaner visualization
+      axes[i // 10, i % 10].axis("off")
+
+
+      axes[i // 10, i % 10].imshow(visualization_pred)
+
+      # Set the title of the subplot to the corresponding label
+      axes[i // 10, i % 10].set_title(f"Actual: {label_map[one_sample[1].item()]}"+" , "+f"Predicted: {label_map[one_sample[2].item()]}" + "  " +"<GradCAM on Predicted>", fontsize=6)
+
+      # Remove x and y ticks for cleaner visualization
+      axes[i // 10, i % 10].axis("off")
+
+  # Ensure tight layout for better visualization
+  plt.tight_layout()
+
+  # Show the entire figure with subplots
+  plt.show()
