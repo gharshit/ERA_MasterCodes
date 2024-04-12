@@ -13,7 +13,7 @@ class A10():
     def __init__(self):
         # Initializing various hyperparameters for the model training
         self.batchsize = 512             # Batch size for the data loader
-        self.momentum = None
+        self.momentum = None             # Momentum (regularization term) for the optimizer
         self.lr = 0.01                   # Learning rate for the optimizer
         self.weightdecay = 0.0001        # Weight decay (regularization term) for the optimizer
         self.losscriteria = "crossentropy"  # Loss function criteria
@@ -122,11 +122,11 @@ class A11():
         # Initializing various hyperparameters for the model training
         self.batchsize = 512             # Batch size for the data loader
         self.lr = 0.01                   # Learning rate for the optimizer
-        self.momentum = 0.9              # Momentum (regularization term) for the optimizer
-        self.weightdecay = None
+        self.momentum = None             # Momentum (regularization term) for the optimizer
+        self.weightdecay = 0.0001        # Weight decay (regularization term) for the optimizer
         self.losscriteria = "crossentropy"  # Loss function criteria
         self.num_epochs = 20             # Number of training epochs
-        self.optimizeralgo = "SGD"      # Optimizer algorithm
+        self.optimizeralgo = "ADAM"      # Optimizer algorithm
         self.dropoutnum = 0.07           # Dropout rate for the model (to prevent overfitting)
         self.numworkers = 4              # Number of workers for data loading
         self.onecyclestatus = True       # Whether to use One Cycle Policy for learning rate scheduling
