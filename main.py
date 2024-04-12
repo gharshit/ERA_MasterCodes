@@ -220,7 +220,7 @@ class A11():
         showmisclassifiedsamples(self.missclassifiedimages,{v: k for k, v in self.labels.items()},plottitle,self.meanlist,self.stdlist)
 
     def showgramcam(self,plottitle):
-        showgramcam(self.model,self.missclassifiedimages,{v: k for k, v in self.labels.items()},plottitle,self.meanlist,self.stdlist)
+        showgramcam(self.model,self.missclassifiedimages,{v: k for k, v in self.labels.items()},plottitle,self.meanlist,self.stdlist,self.device)
 
 
 
