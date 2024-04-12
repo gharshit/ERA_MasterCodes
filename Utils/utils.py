@@ -7,6 +7,9 @@ import numpy as np
 from torchvision.transforms import v2
 from torch_lr_finder import LRFinder
 import os
+from pytorch_grad_cam import GradCAM
+from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
+from pytorch_grad_cam.utils.image import show_cam_on_image
 
 ################### set device ########################
 
@@ -201,7 +204,7 @@ def initiateLRfinder(train_loader, model, optimizer, criterion, device ='cpu'):
   '''
 
   lr_finder = LRFinder(model, optimizer, criterion, device)
-  lr_finder.range_test(train_loader, end_lr=1, num_iter=200)
+  lr_finder.range_test(train_loader, end_lr=2, num_iter=200)
   lr_finder.plot()
   return lr_finder
 
@@ -277,3 +280,9 @@ def list_files(startpath):
         subindent = ' ' * 4 * (level + 1)
         for f in files:
           print('{}{}'.format(subindent, f))
+
+
+
+
+
+######################################## GRAD CAM CODE ####################################
