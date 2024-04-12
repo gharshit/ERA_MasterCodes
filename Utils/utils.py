@@ -304,10 +304,10 @@ def showgramcam(model,misclassified_samples,label_map,plottitle,mean_list, std_l
   target_layers = [model.layer3[-1]]
 
   # Create a new figure for plotting
-  fig, axes = plt.subplots(4, 5, figsize=(22, 25))
+  fig, axes = plt.subplots(4, 5, figsize=(22, 24))
 
   # Set the title for the entire figure
-  fig.suptitle(f"GRADCAM Images - {plottitle}", fontsize=16)
+  fig.suptitle(f"GRADCAM Images - {plottitle}", fontsize=20)
 
 
   # Loop through 10 samples (assuming there are exactly 10 as stated)
