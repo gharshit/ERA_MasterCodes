@@ -303,6 +303,9 @@ def showgramcam(model,misclassified_samples,label_map,plottitle,mean_list, std_l
   #Get target layer to pass to gradcam
   target_layers = [model.layer3[-1]]
 
+  # Construct the CAM object once, and then re-use it on many images:
+  cam = GradCAM(model=model, target_layers=target_layers)
+
   # Create a new figure for plotting
   fig, axes = plt.subplots(4, 5, figsize=(22, 24))
 

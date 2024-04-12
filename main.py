@@ -7,8 +7,10 @@ import warnings
 
 #Ignore warning for now
 warnings.filterwarnings('ignore')
-import multiprocessing as mp
 
+
+
+################################# For Session 10 ###################################
 class A10():
     def __init__(self):
         # Initializing various hyperparameters for the model training
@@ -116,7 +118,7 @@ class A10():
 
 
 
-
+##################################### For Session 11 ###################################
 class A11():
     def __init__(self):
         # Initializing various hyperparameters for the model training
@@ -227,14 +229,9 @@ class A11():
 
 
 
-
-
-
-
 if __name__ == '__main__':
-    # mp.set_start_method('spawn', force=True)
     print()
-    # Intialize class instance for assignment10 methods and variables
+    # Intialize class instance for assignment methods and variables
     S11assignment = A11()
     print("Hyperparamaters & Methods Initialzed... \n")
 
