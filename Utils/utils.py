@@ -204,7 +204,7 @@ def initiateLRfinder(train_loader, model, optimizer, criterion, device ='cpu'):
   '''
 
   lr_finder = LRFinder(model, optimizer, criterion, device)
-  lr_finder.range_test(train_loader, end_lr=10, num_iter=200, step_mode="exp")
+  lr_finder.range_test(train_loader, end_lr=1, num_iter=200, step_mode="exp")
   lr_finder.plot()
   return lr_finder
 
