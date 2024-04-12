@@ -13,6 +13,7 @@ class A10():
     def __init__(self):
         # Initializing various hyperparameters for the model training
         self.batchsize = 512             # Batch size for the data loader
+        self.momentum = None
         self.lr = 0.01                   # Learning rate for the optimizer
         self.weightdecay = 0.0001        # Weight decay (regularization term) for the optimizer
         self.losscriteria = "crossentropy"  # Loss function criteria
@@ -68,7 +69,7 @@ class A10():
 
     def giveoptimizer(self):
         # Set up the optimizer with specified algorithm, learning rate, and weight decay
-        self.optimizer = get_optimizer(self.model, self.optimizeralgo, self.lr, self.weightdecay)
+        self.optimizer = get_optimizer(self.model, self.optimizeralgo, self.lr, self.weightdecay,self.momentum)
 
     def giveloss(self):
         # Define the loss function based on the specified criteria
@@ -106,6 +107,11 @@ class A10():
 
     def modelplots(self):
         post_accuracyplots(self.trainlosses,self.testlosses,self.trainacc,self.testacc)
+
+
+    def missclassplots(self):
+        showmisclassifiedsamples(self.missclassifiedimages,{v: k for k, v in self.labels.items()},"Session 11",self.meanlist,self.stdlist)
+
         
 
 
@@ -116,10 +122,11 @@ class A11():
         # Initializing various hyperparameters for the model training
         self.batchsize = 512             # Batch size for the data loader
         self.lr = 0.01                   # Learning rate for the optimizer
-        self.weightdecay = 0.0001        # Weight decay (regularization term) for the optimizer
+        self.momentum = 0.9              # Momentum (regularization term) for the optimizer
+        self.weightdecay = None
         self.losscriteria = "crossentropy"  # Loss function criteria
         self.num_epochs = 20             # Number of training epochs
-        self.optimizeralgo = "ADAM"      # Optimizer algorithm
+        self.optimizeralgo = "SGD"      # Optimizer algorithm
         self.dropoutnum = 0.07           # Dropout rate for the model (to prevent overfitting)
         self.numworkers = 4              # Number of workers for data loading
         self.onecyclestatus = True       # Whether to use One Cycle Policy for learning rate scheduling
@@ -129,8 +136,8 @@ class A11():
         self.testfunc = test             # Testing function
         self.device = setdevice()        # Set device to GPU if available, else CPU
         self.pctabs = 5                  # Percentage of total steps where the learning rate increases in One Cycle Policy
-        self.divfactor = 10              # Initial division factor for the learning rate in One Cycle Policy
-        self.finaldivfactor = 1          # Final division factor for learning rate in One Cycle Policy
+        self.divfactor = 100             # Initial division factor for the learning rate in One Cycle Policy ; Determines the initial learning rate via initial_lr = max_lr/div_factor
+        self.finaldivfactor = 1          # Final division factor for learning rate in One Cycle Policy ; Determines the minimum learning rate via min_lr = initial_lr/final_div_factor
         self.meanlist = mean_list        # mean of dataset
         self.stdlist = std_list          # std of dataset
         self.imageinputsize = (3,32,32)  # set image input size
@@ -170,7 +177,7 @@ class A11():
 
     def giveoptimizer(self):
         # Set up the optimizer with specified algorithm, learning rate, and weight decay
-        self.optimizer = get_optimizer(self.model, self.optimizeralgo, self.lr, self.weightdecay)
+        self.optimizer = get_optimizer(self.model, self.optimizeralgo, self.lr, self.weightdecay ,self.momentum)
 
     def giveloss(self):
         # Define the loss function based on the specified criteria
