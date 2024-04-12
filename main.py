@@ -216,8 +216,11 @@ class A11():
     def modelplots(self):
         post_accuracyplots(self.trainlosses,self.testlosses,self.trainacc,self.testacc)
 
-    def missclassplots(self):
-        showmisclassifiedsamples(self.missclassifiedimages,{v: k for k, v in self.labels.items()},"Session 11",self.meanlist,self.stdlist)
+    def missclassplots(self,plottitle):
+        showmisclassifiedsamples(self.missclassifiedimages,{v: k for k, v in self.labels.items()},plottitle,self.meanlist,self.stdlist)
+
+    def showgramcam(self,plottitle):
+        showgramcam(self.model,self.missclassifiedimages,{v: k for k, v in self.labels.items()},plottitle,self.meanlist,self.stdlist)
 
 
 
